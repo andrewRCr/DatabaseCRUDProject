@@ -1,23 +1,34 @@
-// App.js
+// app.js
 
-/*
-    SETUP
-*/
+// SETUP AND ROUTING
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 9124;                 // Set a port number at the top so it's easy to change in the future
+var exphbs = require('express-handlebars');     // Import express-handlebars
+app.engine('.hbs', exphbs({                     // Create an instance of the handlebars engine to process templates
+    extname: ".hbs"
+}));
+app.use(express.static('public'));
+app.set('view engine', '.hbs');
+var db = require('./database/db-connector')
+// use Heroku-defined port
+const port = process.env.PORT || 3000;
 
-/*
-    ROUTES
-*/
-app.get('/', function(req, res)                 // This is the basic syntax for what is called a 'route'
-    {
-        res.send("The server is running!")      // This function literally sends the string "The server is running!" to the computer
-    });                                         // requesting the web site.
 
-/*
-    LISTENER
-*/
-app.listen(PORT, function(){            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
-    console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
-});
+
+// define default route
+app.get('/', (req, res) =>
+    {  
+        let query1 = "SELECT * FROM bsg_people;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
+
+
+
+
+ // LISTENER
+ app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
+

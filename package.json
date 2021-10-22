@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/andrewcreekmore/CS340_ProjectGroup10#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "mysql": "^2.18.1"
   }
 }
