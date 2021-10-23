@@ -14,11 +14,6 @@ var pool = mysql.createPool({
 // export it for use in our applicaiton
 module.exports.pool = pool;
 
-// HEROKU ADD-ON JAWS DB CREDENTIALS:
-// host:	x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-// username: nt3gj8186ds60d3d
-// password: co67xuxa7wukbkv3
-// db: wae9tszq9ltb6lbu
 
 // DATABASE CLI LOGIN:
- // mysql --host=x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com --user=nt3gj8186ds60d3d --password=co67xuxa7wukbkv3 --reconnect wae9tszq9ltb6lbu
+// mysql --host=x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com --user=nt3gj8186ds60d3d --password=co67xuxa7wukbkv3 --reconnect wae9tszq9ltb6lbu

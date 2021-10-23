@@ -54,6 +54,21 @@ app.get('/', (req, res) =>
             // Save the planets
             let planets = rows;
 
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
             return res.render('index', {data: people, planets: planets});
         })
     })
