@@ -1,0 +1,73 @@
+<!-- /views/employees.hbs -->
+
+<h1>Employees</h1>
+
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the emp_id, first_name, last_name, phone_number, job_title, and assigned_yard, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.emp_id}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.phone_number}}</td>
+            <td>{{this.job_title}}</td>
+            <td>{{this.assigned_yard}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> 
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add New Employee</h2>
+<p>To add a new employee, please enter their information below and click 'Submit'!</p>
+<form id="add-employee-form-ajax">
+    <label for="input-first_name">First Name: </label>
+    <input type="text" name="input-first_name" id="input-first_name">
+    
+    <label for="input-last_name">Last Name: </label>
+    <input type="text" name="input-last_name" id="input-last_name">
+
+    <label for="input-phone_number">Phone Number: </label>
+    <input type="number" name="input-phone_number" id="input-phone_number">
+
+    <label for="input-job_title">Job Title: </label>
+    <input type="text" name="input-job_title" id="input-job_title">
+
+    <label for="input-assigned_yard">Assigned Yard: </label>
+    <input type="number" name="input-assigned_yard" id="input-assigned_yard">
+
+
+    <input type="submit">
+</form>
+
+<h2>Search Using an HTML Form</h2>
+<p>Search by last name using the field below. Partial last names are OK too!</p>
+<form id="search-employee-html" method='GET' action='/'>
+    <label for="input-last_name">Search by Last Name: </label>
+    <input type="text" name="lname" id="input-last_name-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_employee.js"></script>

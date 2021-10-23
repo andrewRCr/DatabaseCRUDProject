@@ -128,6 +128,65 @@ app.post('/add-person-ajax', function(req, res)
 });
 
 
+// define EMPLOYEES entity GET route
+app.get('/employees', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Employees;";               // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('employees', {data: rows});                  // Render the employees.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
+
+// define EMPLOYEES entity POST route
+app.post('/add-employee-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let assigned_yard = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        assigned_yard = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title, assigned_yard) VALUES ('${data.first_name}', '${data.last_name}', '${data.phone_number}', ${data.job_title}, ${assigned_yard})`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Employees
+            query2 = `SELECT * FROM Employees;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
 
