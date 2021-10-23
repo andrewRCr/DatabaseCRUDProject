@@ -140,7 +140,7 @@ app.get('/employees', (req, res) =>
 });                                                         // received back from the query
 
 // define EMPLOYEES entity POST route
-app.post('/employees/add-employee-ajax', function(req, res) 
+app.post('/add-employee-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
