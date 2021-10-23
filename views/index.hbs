@@ -47,7 +47,12 @@
     <input type="text" name="input-lname" id="input-lname">
 
     <label for="input-homeworld">Homeworld: </label>
-    <input type="number" name="input-homeworld" id="input-homeworld">
+    <select name="input-homeworld" id="input-homeworld-ajax">
+        <option value="">Select a Planet</option>
+        {{#each planets}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
 
     <label for="input-age">Age: </label>
     <input type="number" name="input-age" id="input-age">

@@ -24,13 +24,27 @@ const port = process.env.PORT || 3000;
 // define default route
 app.get('/', (req, res) =>
     {  
-        let query1 = "SELECT * FROM bsg_people;";               // Define our query
+    // Declare Query 1
+    let query1 = "SELECT * FROM bsg_people;";
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM bsg_planets;";
 
-            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+            return res.render('index', {data: people, planets: planets});
+        })
+    })
+});                                                      
 
 
 app.post('/add-person-ajax', function(req, res) 
