@@ -25,7 +25,19 @@ const port = process.env.PORT || 3000;
 app.get('/', (req, res) =>
     {  
     // Declare Query 1
-    let query1 = "SELECT * FROM bsg_people;";
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM bsg_people;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM bsg_people WHERE lname LIKE "${req.query.lname}%"`
+    }
 
     // Query 2 is the same in both cases
     let query2 = "SELECT * FROM bsg_planets;";
@@ -41,6 +53,7 @@ app.get('/', (req, res) =>
             
             // Save the planets
             let planets = rows;
+
             return res.render('index', {data: people, planets: planets});
         })
     })

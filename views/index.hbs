@@ -60,5 +60,15 @@
     <input type="submit">
 </form>
 
+<h2>Search Using an HTML Form</h2>
+<p>Search by last name using the field below. Partial last names are OK too!</p>
+<form id="search-person-html" method='GET' action='/'>
+    <label for="input-lname">Search by Last Name: </label>
+    <input type="text" name="lname" id="input-lname-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_person.js"></script>
