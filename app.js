@@ -153,7 +153,7 @@ app.post('/add-employee-ajax', function(req, res)
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title, assigned_yard) VALUES ('${data.first_name}', '${data.last_name}', '${data.phone_number}', '${data.job_title}', ${assigned_yard})`;
+    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title, assigned_yard) VALUES ('${data.first_name}', '${data.last_name}', ${data.phone_number}, '${data.job_title}', ${assigned_yard})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
