@@ -12,7 +12,7 @@ addPersonForm.addEventListener("submit", function (e) {
     // Get form fields we need to get data from
     let inputFirstName = document.getElementById("input-fname");
     let inputLastName = document.getElementById("input-lname");
-    let inputHomeworld = document.getElementById("input-homeworld");
+    let inputHomeworld = document.getElementById("input-homeworld-ajax");
     let inputAge = document.getElementById("input-age");
 
     // Get the values from the form fields
