@@ -187,6 +187,224 @@ app.post('/add-employee-ajax', function(req, res)
 });
 
 
+// define YARDS entity GET route
+app.get('/yards', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Employees;";               // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('yards', {data: rows});                  // Render the yards.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
+
+// define YARDS entity POST route
+app.post('/add-yard-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Yards (dog_limit) VALUES ('${data.dog_limit}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Yards
+            query2 = `SELECT * FROM Yards;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// define KENNELS entity GET route
+app.get('/kennels', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Kennels;";               // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('kennels', {data: rows});                  // Render the kennels.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
+
+// define KENNELS entity POST route
+app.post('/add-kennel-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let current_tenant = parseInt(data.current_tenant);
+    if (isNaN(current_tenant))
+    {
+        current_tenant = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Kennels (size_limit, current_tenant) VALUES ('${data.size_limit}', '${data.current_tenant}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Kennels
+            query2 = `SELECT * FROM Kennels;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// define DOGS entity GET route
+app.get('/dogs', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Dogs;";               // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('dogs', {data: rows});                  // Render the dogs.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
+
+// define DOGS entity POST route
+app.post('/add-dog-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Dogs (dog_name, size, assigned_yard, assigned_kennel) VALUES ('${data.dog_name}', '${data.size}', ${data.assigned_yard}, '${data.assigned_kennel}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Dogs
+            query2 = `SELECT * FROM Dogs;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// define DOG_EMPLOYEES_RELATIONS entity GET route
+app.get('/dog_employee_relations', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Dog_Employee_Relations;";               // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('dog_employee_relations', {data: rows});                  // Render the dog_employee_relations.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
+
+// define DOG_EMPLOYEE_RELATIONS entity POST route
+app.post('/add-dog_employee_relations-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let get_along = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        get_along = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Dog_Employee_Relations (get_along) VALUES ('${data.get_along}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Dog_Employee_Relations
+            query2 = `SELECT * FROM Dog_Employee_Relations;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
 
