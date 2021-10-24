@@ -1,1 +1,68 @@
 <!-- ./views/dogs.hbs -->
+
+<h1>Dogs</h1>
+
+{{!-- Create a table --}}
+<table id="dog-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the dog_id, dog_name, size, assigned_yard, and assigned_kennel, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.dog_id}}</td>
+            <td>{{this.dog_name}}</td>
+            <td>{{this.size}}</td>
+            <td>{{this.assigned_yard}}</td>
+            <td>{{this.assigned_kennel}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> 
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add New Employee</h2>
+<p>To add a new dog, please enter their information below and click 'Submit'!</p>
+<form id="add-dog-form-ajax">
+    <label for="input-dog_name">Dog's Name: </label>
+    <input type="text" name="input-dog_name" id="input-dog_name">
+    
+    <label for="input-size">Size (1 for small, 2 for medium, or 3 for large): </label>
+    <input type="text" name="input-size" id="input-size">
+
+    <label for="input-assigned_yard">Assigned Yard: </label>
+    <input type="number" name="input-assigned_yard" id="input-assigned_yard">
+
+    <label for="input-assigned_kennel">Assigned Kennel: </label>
+    <input type="text" name="input-assigned_kennel" id="input-assigned_kennel">
+
+    <input type="submit">
+</form>
+
+<h2>Search Using an HTML Form</h2>
+<p>Search by dog name using the field below. Partial last names are OK too!</p>
+<form id="search-dog-html" method='GET' action='/dogs'>
+    <label for="input-dog_name">Search by Dog Name: </label>
+    <input type="text" name="dog_name" id="input-dog_name-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_employee.js"></script>
