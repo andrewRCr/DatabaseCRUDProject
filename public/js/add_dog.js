@@ -4,7 +4,7 @@
 let addDogForm = document.getElementById('add-dog-form-ajax');
 
 // Modify the objects we need
-addEmployeeForm.addEventListener("submit", function (e) {
+addDogForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
