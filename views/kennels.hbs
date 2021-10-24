@@ -1,1 +1,60 @@
 <!-- ./views/kennels.hbs -->
+
+<h1>Kennels</h1>
+
+{{!-- Create a table --}}
+<table id="kennel-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the kennel_id, size_limit, and current_tenant, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.kennel_id}}</td>
+            <td>{{this.size_limit}}</td>
+            <td>{{this.current_tenant}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> 
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add New Kennel</h2>
+<p>To add a new kennel, please enter their information below and click 'Submit'!</p>
+<form id="add-kennel-form-ajax">
+    <label for="input-size_limit">Size Limit (1 for small, 2 for medium, 3 for large): </label>
+    <input type="text" name="input-size_limit" id="input-size_limit">
+    
+    <label for="input-current_tenant">Current Tenant: </label>
+    <input type="text" name="input-current_tenant" id="input-current_tenant">
+
+    <input type="submit">
+</form>
+
+<h2>Search Using an HTML Form</h2>
+<p>Search by tenant's id using the field below.</p>
+<form id="search-kennel-html" method='GET' action='/kennels'>
+    <label for="input-current_tenant">Search by Current Tenant: </label>
+    <input type="text" name="current_tenant" id="input-current_tenant-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_employee.js"></script>
