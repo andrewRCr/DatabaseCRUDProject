@@ -4,7 +4,7 @@
 let addYardForm = document.getElementById('add-yard-form-ajax');
 
 // Modify the objects we need
-addEmployeeForm.addEventListener("submit", function (e) {
+addYardForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
