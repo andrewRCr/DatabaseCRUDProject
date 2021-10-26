@@ -11,20 +11,20 @@ addDogForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputDogName = document.getElementById("input-dog_name");
-    let inputSize = document.getElementById("input-size");
+    let inputDogSize = document.getElementById("input-size");
     let inputAssignedYard = document.getElementById("input-assigned_yard");
     let inputAssignedKennel = document.getElementById("input-assigned_kennel");
 
     // Get the values from the form fields
     let dogNameValue = inputDogName.value;
-    let sizeValue = inputSize.value;
+    let dogSizeValue = inputDogSize.value;
     let assignedYardValue = inputAssignedYard.value;
     let assignedKennelValue = inputAssignedKennel.value;
 
     // Put our data we want to send in a javascript object
     let data = {
         dog_name: dogNameValue,
-        size: sizeValue,
+        dog_size: dogSizeValue,
         assigned_yard: assignedYardValue,
         assignedKennel: assignedKennelValue
     }
@@ -43,7 +43,7 @@ addDogForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             inputDogName.value = '';
-            inputSize.value = '';
+            inputDogSize.value = '';
             inputAssignedYard.value = '';
             inputAssignedKennel.value = '';
         }
