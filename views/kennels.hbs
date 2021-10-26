@@ -33,6 +33,8 @@
             <td>{{this.kennel_id}}</td>
             <td>{{this.size_limit}}</td>
             <td>{{this.current_tenant}}</td>
+            <td><button name="delete" id={{this.kennel_id}}>Delete</button></td>
+            <td><button name="update" id={{this.kennel_id}}>Update</button></td>
         </tr>
         {{/each}}
     </tbody>
