@@ -31,7 +31,6 @@ LOCK TABLES `Kennels` WRITE;
 INSERT INTO `Kennels` VALUES (1, 1), (2, 2), (3, 3), (4, 3), (5, 1), (6, 3);
 /*!40000 ALTER TABLE `Kennels` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `Dogs`
 --
