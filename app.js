@@ -146,14 +146,14 @@ app.post('/add-employee-ajax', function(req, res)
     let data = req.body;
 
     // Capture NULL values
-    // let assigned_yard = parseInt(data.assigned_yard);
-    // if (isNaN(assigned_yard))
-    // {
-    //     assigned_yard = 'NULL'
-    // }
+    let assigned_yard = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        assigned_yard = 'NULL'
+    }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title) VALUES ('${data.first_name}', '${data.last_name}', ${data.phone_number}, '${data.job_title}')`;
+    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title, assigned_yard) VALUES ('${data.first_name}', '${data.last_name}', ${data.phone_number}, '${data.job_title}', '${data.assigned_yard}'`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -314,7 +314,7 @@ app.post('/add-dog-ajax', function(req, res)
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Dogs (dog_name, size, assigned_yard, assigned_kennel) VALUES ('${data.dog_name}', '${data.size}', ${data.assigned_yard}, '${data.assigned_kennel}')`;
+    query1 = `INSERT INTO Dogs (dog_name, dog_size, assigned_yard, assigned_kennel) VALUES ('${data.dog_name}', '${data.dog_size}', ${data.assigned_yard}, '${data.assigned_kennel}')`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -407,4 +407,3 @@ app.post('/add-dog_employee_relations-ajax', function(req, res)
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
-
