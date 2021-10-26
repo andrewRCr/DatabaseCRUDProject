@@ -190,7 +190,7 @@ app.post('/add-employee-ajax', function(req, res)
 // define YARDS entity GET route
 app.get('/yards', (req, res) =>
 {  
-    let query1 = "SELECT * FROM Employees;";               // Define our query
+    let query1 = "SELECT * FROM Yards;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
