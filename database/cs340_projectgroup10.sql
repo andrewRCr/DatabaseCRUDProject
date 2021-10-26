@@ -39,8 +39,8 @@ CREATE TABLE `Dogs` (
   `dog_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `dog_name` varchar(255) NOT NULL,
   `dog_size` varchar(255) NOT NULL,
-  `assigned_yard` varchar(255) NOT NULL,
-  `assigned_kennel` varchar(255) NOT NULL,
+  `assigned_yard` varchar(255),
+  `assigned_kennel` varchar(255),
   FOREIGN KEY (`assigned_yard`) REFERENCES `Yards` (`yard_id`),
   FOREIGN KEY (`assigned_kennel`) REFERENCES `Kennels` (`kennel_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
