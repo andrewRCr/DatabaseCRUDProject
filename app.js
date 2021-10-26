@@ -127,6 +127,13 @@ app.post('/add-person-ajax', function(req, res)
     })
 });
 
+// define HOME page GET route
+app.get('/home', (req, res) =>
+{
+    // Can change this to "/" path when landing page guide no longer needed
+    // Will need to update "/home" path in various views pages when / if this is done
+    res.render('home');
+});
 
 // define EMPLOYEES entity GET route
 app.get('/employees', (req, res) =>
