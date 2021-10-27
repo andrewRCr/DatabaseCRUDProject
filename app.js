@@ -320,7 +320,7 @@ app.post('/add-dog-ajax', function(req, res)
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Dogs (dog_name, dog_size, assigned_yard, assigned_kennel) VALUES ('${data.dog_name}', '${data.dog_size}', ${data.assigned_yard}, '${data.assigned_kennel}')`;
+    query1 = `INSERT INTO Dogs (dog_name, dog_size, assigned_yard, assigned_kennel) VALUES ('${data.dog_name}', ${data.dog_size}, ${data.assigned_yard}, ${data.assigned_kennel})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
