@@ -7,10 +7,10 @@
   }
 
 a:link, a:visited {
-    color: blue;
+    color: rgb(2, 2, 189);
 }
 a:hover {
-    color: red;
+    color: rgb(177, 5, 5);
 }
 
 /* common styles end */
