@@ -83,7 +83,7 @@ addRowToTable = (data) => {
     // Fill the cells with correct data
     dog_idCell.innerText = newRow.dog_id;
     dogNameCell.innerText = newRow.dog_name;
-    sizeCell.innerText = newRow.size;
+    sizeCell.innerText = newRow.dog_size;
     assignedYardCell.innerText = newRow.assigned_yard;
     assignedKennelCell.innerText = newRow.assigned_kennel;
 
