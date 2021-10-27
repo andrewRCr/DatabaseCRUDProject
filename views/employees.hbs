@@ -31,9 +31,9 @@
             <td>{{this.phone_number}}</td>
             <td>{{this.job_title}}</td>
             <td>{{this.assigned_yard}}</td>
+            <td><button name="delete" id={{this.emp_id}}>Delete</button></td> 
+            {{!--<td><button name="update" id={{this.emp_id}}>Update</button></td>--}}
             <td><form action = "https://cs340-project-group-10.herokuapp.com/update_employee" method="get"><button type="submit">Update</button></form></td>
-            {{!--<td><button name="delete" id={{this.emp_id}}>Delete</button></td> --}}
-            <td><button name="update" id={{this.emp_id}}>Update</button></td>
 
             
         </tr>
