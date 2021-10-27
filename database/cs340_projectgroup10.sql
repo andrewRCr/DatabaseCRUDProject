@@ -101,7 +101,7 @@ CREATE TABLE `Dog_Employee_Relations` (
   `get_along` int(1),
   PRIMARY KEY (`dog_id`,`emp_id`),
   FOREIGN KEY (`dog_id`) REFERENCES `Dogs` (`dog_id`),
-  FOREIGN KEY (`emp_id`) REFERENCES `Employees` (`emp_id`)
+  FOREIGN KEY (`emp_id`) REFERENCES `bsg_people` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

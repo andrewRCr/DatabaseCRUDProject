@@ -133,6 +133,12 @@ app.get('/', (req, res) =>
     // Can change this to "/" path when landing page guide no longer needed
     // Will need to update "/home" path in various views pages when / if this is done
     res.render('index');
+
+app.get('/home', (req, res) =>
+{
+    // Can change this to "/" path when landing page guide no longer needed
+    // Will need to update "/home" path in various views pages when / if this is done
+    res.render('home');
 });
 
 // define EMPLOYEES entity GET route
@@ -414,4 +420,4 @@ app.post('/add-dog_employee_relations-ajax', function(req, res)
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
-
+})
