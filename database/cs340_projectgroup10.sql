@@ -39,8 +39,8 @@ CREATE TABLE `Dogs` (
   `dog_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `dog_name` varchar(255) NOT NULL,
   `dog_size` varchar(255) NOT NULL,
-  `assigned_yard` varchar(255),
-  `assigned_kennel` varchar(255),
+  `assigned_yard` int,
+  `assigned_kennel` int,
   FOREIGN KEY (`assigned_yard`) REFERENCES `Yards` (`yard_id`),
   FOREIGN KEY (`assigned_kennel`) REFERENCES `Kennels` (`kennel_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -94,22 +94,22 @@ UNLOCK TABLES;
 -- Table structure for table `Dogs_Employees_Relations`
 --
 
-DROP TABLE IF EXISTS `Dogs_Employees_Relations`;
-CREATE TABLE `Dogs_Employees_Relations` (
+DROP TABLE IF EXISTS `Dog_Employee_Relations`;
+CREATE TABLE `Dog_Employee_Relations` (
   `dog_id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `get_along` int(1),
   PRIMARY KEY (`dog_id`,`emp_id`),
   FOREIGN KEY (`dog_id`) REFERENCES `Dogs` (`dog_id`),
-  FOREIGN KEY (`emp_id`) REFERENCES `bsg_people` (`emp_id`)
+  FOREIGN KEY (`emp_id`) REFERENCES `Employees` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Setting data for table `Dogs_Employees_Relations`
 --
 
-LOCK TABLES `Dogs_Employees_Relations` WRITE;
-/*!40000 ALTER TABLE `Dogs_Employees_Relations` DISABLE KEYS */;
-INSERT INTO `Dogs_Employees_Relations` VALUES (2,2,1),(2,1,0),(1,4,0),(1,3,1),(3,1,0),(3,6,1),(4,5,0),(4,6,0);
-/*!40000 ALTER TABLE `Dogs_Employees_Relations` ENABLE KEYS */;
+LOCK TABLES `Dog_Employee_Relations` WRITE;
+/*!40000 ALTER TABLE `Dog_Employee_Relations` DISABLE KEYS */;
+INSERT INTO `Dog_Employee_Relations` VALUES (2,2,1),(2,1,0),(1,4,0),(1,3,1),(3,1,0),(3,6,1),(4,5,0),(4,6,0);
+/*!40000 ALTER TABLE `Dog_Employee_Relations` ENABLE KEYS */;
 UNLOCK TABLES;
