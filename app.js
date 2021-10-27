@@ -22,7 +22,7 @@ const port = process.env.PORT || 3000;
 
 // ROUTING
 // define default route
-app.get('/', (req, res) =>
+app.get('/bsg', (req, res) =>
     {  
     // Declare Query 1
     let query1;
@@ -69,7 +69,7 @@ app.get('/', (req, res) =>
                 return Object.assign(person, {homeworld: planetmap[person.homeworld]})
             })
 
-            return res.render('index', {data: people, planets: planets});
+            return res.render('bsg', {data: people, planets: planets});
         })
     })
 });                                                      
@@ -128,11 +128,11 @@ app.post('/add-person-ajax', function(req, res)
 });
 
 // define HOME page GET route
-app.get('/home', (req, res) =>
+app.get('/', (req, res) =>
 {
     // Can change this to "/" path when landing page guide no longer needed
     // Will need to update "/home" path in various views pages when / if this is done
-    res.render('home');
+    res.render('index');
 });
 
 // define EMPLOYEES entity GET route
