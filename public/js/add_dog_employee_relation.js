@@ -81,7 +81,7 @@ addRowToTable = (data) => {
 
     // Add the cells to the row 
     row.appendChild(dogidCell);
-    row.appendChild(empCell);
+    row.appendChild(empidCell);
     row.appendChild(getAlongCell);
     
     // Add the row to the table
