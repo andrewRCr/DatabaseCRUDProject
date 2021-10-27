@@ -40,10 +40,10 @@
 <p>To add a new kennel, please enter their information below and click 'Submit'!</p>
 <form id="add-kennel-form-ajax">
     <label for="input-size_limit">Size Limit (1 for small, 2 for medium, 3 for large): </label>
-    <input type="text" name="input-size_limit" id="input-size_limit">
+    <input type="number" name="input-size_limit" id="input-size_limit">
     
     <label for="input-current_tenant">Current Tenant: </label>
-    <input type="text" name="input-current_tenant" id="input-current_tenant">
+    <input type="number" name="input-current_tenant" id="input-current_tenant">
 
     <input type="submit">
 </form>
@@ -52,7 +52,7 @@
 <p>Search by tenant's id using the field below.</p>
 <form id="search-kennel-html" method='GET' action='/kennels'>
     <label for="input-current_tenant">Search by Current Tenant: </label>
-    <input type="text" name="current_tenant" id="input-current_tenant-html-search">
+    <input type="number" name="current_tenant" id="input-current_tenant-html-search">
     
     <input type="submit">
     <a href='/'><button>Reset</button></a>

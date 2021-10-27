@@ -269,7 +269,7 @@ app.post('/add-kennel-ajax', function(req, res)
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Kennels (size_limit, current_tenant) VALUES ('${data.size_limit}', '${data.current_tenant}')`;
+    query1 = `INSERT INTO Kennels (size_limit, current_tenant) VALUES (${data.size_limit}, ${data.current_tenant})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
