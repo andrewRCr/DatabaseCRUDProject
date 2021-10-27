@@ -40,10 +40,10 @@
 <p>To add a new employee, please enter their information below and click 'Submit'!</p>
 <form id="add-dog_employee_relation-form-ajax">
     <label for="input-dog_id">Dog ID: </label>
-    <input type="text" name="input-dog_id" id="input-dog_id">
+    <input type="number" name="input-dog_id" id="input-dog_id">
     
     <label for="input-emp_id">Employee ID: </label>
-    <input type="text" name="input-emp_id" id="input-emp_id">
+    <input type="number" name="input-emp_id" id="input-emp_id">
 
     <label for="input-get_along">Get Along (1 for yes, 0 for no): </label>
     <input type="number" name="input-get_along" id="input-get_along">
@@ -55,7 +55,7 @@
 <p>Search by relation using the field below.</p>
 <form id="search-dog_employee_relation-html" method='GET' action='/dog_employee_relations'>
     <label for="input-last_name">Search by Relation (1 is get along, 0 is do not get along): </label>
-    <input type="text" name="get_along" id="input-get_along-html-search">
+    <input type="number" name="get_along" id="input-get_along-html-search">
     
     <input type="submit">
     <a href='/'><button>Reset</button></a>
