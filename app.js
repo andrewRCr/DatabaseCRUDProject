@@ -456,9 +456,9 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
 });
 
 // define DOG_EMPLOYEE_RELATIONS entity UPDATE GET route
-app.get('/update_dog_employee_relations', (req, res) =>
+app.get('/update_dog_employee_relation', (req, res) =>
     {  
-        res.render('update_dog_employee_relations');              
+        res.render('update_dog_employee_relation');              
     }); 
 
  // LISTENER
