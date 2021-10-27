@@ -1,4 +1,11 @@
-DROP TABLE IF EXISTS `Yards`;
+-- DATABASE CLI LOGIN:
+-- mysql --host=x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com --user=nt3gj8186ds60d3d --password=co67xuxa7wukbkv3 --reconnect wae9tszq9ltb6lbu
+-- USE wae9tszq9ltb6lbu
+-- source ./database/cs340_projectgroup10.sql;
+
+-- dropping all tables at once to prevent FK conflicts
+DROP TABLE IF EXISTS Yards, Kennels, Dogs, Employees, Dog_Employee_Relations;
+
 CREATE TABLE `Yards` (
   `yard_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `dog_limit` int(1) NOT NULL
@@ -16,7 +23,6 @@ UNLOCK TABLES;
 --
 -- Table structure for table `Kennels`
 --
-DROP TABLE IF EXISTS `Kennels`;
 CREATE TABLE `Kennels` (
   `kennel_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `size_limit` varchar(255) NOT NULL
@@ -34,7 +40,6 @@ UNLOCK TABLES;
 --
 -- Table structure for table `Dogs`
 --
-DROP TABLE IF EXISTS `Dogs`;
 CREATE TABLE `Dogs` (
   `dog_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `dog_name` varchar(255) NOT NULL,
@@ -69,7 +74,6 @@ UPDATE `Kennels` SET `current_tenant` = 3 WHERE `kennel_id` = 4;
 -- Table structure for table `Employees `
 --
 
-DROP TABLE IF EXISTS `Employees`;
 CREATE TABLE `Employees` (
   `emp_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
   `last_name` varchar(255) NOT NULL,
@@ -94,14 +98,13 @@ UNLOCK TABLES;
 -- Table structure for table `Dogs_Employees_Relations`
 --
 
-DROP TABLE IF EXISTS `Dog_Employee_Relations`;
 CREATE TABLE `Dog_Employee_Relations` (
   `dog_id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `get_along` int(1),
   PRIMARY KEY (`dog_id`,`emp_id`),
   FOREIGN KEY (`dog_id`) REFERENCES `Dogs` (`dog_id`),
-  FOREIGN KEY (`emp_id`) REFERENCES `bsg_people` (`emp_id`)
+  FOREIGN KEY (`emp_id`) REFERENCES `Employees` (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
