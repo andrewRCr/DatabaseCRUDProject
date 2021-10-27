@@ -6,5 +6,12 @@
     font-family: sans-serif;
   }
 
+a:link, a:visited {
+    color: blue;
+}
+a:hover {
+    color: red;
+}
+
 /* common styles end */
 
