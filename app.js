@@ -145,7 +145,7 @@ app.get('/employees', (req, res) =>
     })                                                      // an object where 'data' is equal to the 'rows' we
 });                                                         // received back from the query
 
-// define EMPLOYEES entity POST route
+// define EMPLOYEES entity ADD POST route
 app.post('/add-employee-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
@@ -188,6 +188,33 @@ app.post('/add-employee-ajax', function(req, res)
                     res.send(rows);
                 }
             })
+        }
+    })
+});
+
+// define EMPLOYEES entity UPDATE POST route
+app.post('/update-employee-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let assigned_yard = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        assigned_yard = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `UPDATE Employees SET first_name = '${data.first_name}', last_name = '${data.last_name}', phone_number = ${data.phone_number}, job_title = '${data.job_title}', assigned_yard = ${assigned_yard} WHERE emp_id = ${emp_id}`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
         }
     })
 });
