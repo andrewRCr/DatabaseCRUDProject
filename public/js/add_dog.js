@@ -26,7 +26,7 @@ addDogForm.addEventListener("submit", function (e) {
         dog_name: dogNameValue,
         dog_size: dogSizeValue,
         assigned_yard: assignedYardValue,
-        assignedKennel: assignedKennelValue
+        assigned_kennel: assignedKennelValue
     }
     
     // Setup our AJAX request
