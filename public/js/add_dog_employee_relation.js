@@ -1,10 +1,10 @@
 // ./public/js/add_dog_employee_relation.js
 
 // Get the objects we need to modify
-let addDogEmployeeRelationForm = document.getElementById('add-dog_employee_relations-form-ajax');
+let addDogEmployeeRelationForm = document.getElementById('add-dog_employee_relation-form-ajax');
 
 // Modify the objects we need
-addEmployeeForm.addEventListener("submit", function (e) {
+addDogEmployeeRelationForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
