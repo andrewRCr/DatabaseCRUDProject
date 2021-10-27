@@ -192,6 +192,12 @@ app.post('/add-employee-ajax', function(req, res)
     })
 });
 
+// define EMPLOYEES entity UPDATE GET route
+app.get('/update_employee', (req, res) =>
+    {  
+        res.render('update_employee');              
+    }); 
+
 // define EMPLOYEES entity UPDATE POST route
 app.post('/update-employee-ajax', function(req, res) 
 {
