@@ -23,12 +23,9 @@ const port = process.env.PORT || 3000;
 // ROUTING
 // define default route
 app.get('/', (req, res) =>
-{
-    // Can change this to "/" path when landing page guide no longer needed
-    // Will need to update "/home" path in various views pages when / if this is done
-    res.render('index');
-
-
+    {  
+        res.render('index');              
+    }); 
 
 
 app.get('/bsg', (req, res) =>
@@ -416,4 +413,4 @@ app.post('/add-dog_employee_relations-ajax', function(req, res)
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
-})
+
