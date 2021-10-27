@@ -370,15 +370,8 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
-    let get_along = parseInt(data.assigned_yard);
-    if (isNaN(assigned_yard))
-    {
-        get_along = 'NULL'
-    }
-
     // Create the query and run it on the database
-    query1 = `INSERT INTO Dog_Employee_Relations (get_along) VALUES ('${data.get_along}')`;
+    query1 = `INSERT INTO Dog_Employee_Relations (dog_id, emp_id, get_along) VALUES (${data.dog_id}, ${data.emp_id}, ${data.get_along})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
