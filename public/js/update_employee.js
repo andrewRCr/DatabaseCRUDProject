@@ -41,7 +41,6 @@ updateEmployeeForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-
             // Clear the input fields for another transaction
             inputFirstName.value = '';
             inputLastName.value = '';

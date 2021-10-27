@@ -277,6 +277,12 @@ app.post('/add-yard-ajax', function(req, res)
     })
 });
 
+// define YARDS entity UPDATE GET route
+app.get('/update_yard', (req, res) =>
+    {  
+        res.render('update_yard');              
+    }); 
+
 // define KENNELS entity GET route
 app.get('/kennels', (req, res) =>
 {  
@@ -334,6 +340,12 @@ app.post('/add-kennel-ajax', function(req, res)
         }
     })
 });
+
+// define KENNELS entity UPDATE GET route
+app.get('/update_kennel', (req, res) =>
+    {  
+        res.render('update_kennel');              
+    }); 
 
 // define DOGS entity GET route
 app.get('/dogs', (req, res) =>
@@ -442,6 +454,12 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
         }
     })
 });
+
+// define DOG_EMPLOYEE_RELATIONS entity UPDATE GET route
+app.get('/update_dog_employee_relations', (req, res) =>
+    {  
+        res.render('update_dog_employee_relations');              
+    }); 
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));

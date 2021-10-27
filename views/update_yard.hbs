@@ -1,0 +1,15 @@
+<!-- ./views/update_yard.hbs -->
+
+{{!-- Form to add a record to the table  --}}
+<h2>Update Yard Information</h2>
+<p>To update a Kennel, please edit its information below and click 'Submit'!</p>
+<form id="update-yard-form-ajax">
+    <label for="input-dog_limit">Dog Limit: </label>
+    <input type="text" name="input-dog_limit" id="input-dog_limit">
+
+    <input type="submit">
+</form>
+
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/update_yard.js"></script>

@@ -29,7 +29,8 @@
             <td>{{this.emp_id}}</td>
             <td>{{this.get_along}}</td>
             <td><button name="delete" id={{this.dog_id}},{{this.emp_id}}>Delete</button></td>
-            <td><button name="update" id={{this.dog_id}},{{this.emp_id}}>Update</button></td>
+            {{!--<td><button name="update" id={{this.dog_id}},{{this.emp_id}}>Update</button></td>--}}
+            <td><form action = "https://cs340-project-group-10.herokuapp.com/update_dog_employee_relation" method="get"><button type="submit">Update</button></form></td>
         </tr>
         {{/each}}
     </tbody>

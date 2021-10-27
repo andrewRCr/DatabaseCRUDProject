@@ -1,0 +1,17 @@
+<!-- ./views/update_kennel.hbs -->
+
+{{!-- Form to update a Kennel record --}}
+<h2>Update Kennel Information</h2>
+<p>To update a Kennel, please edit its information below and click 'Submit'!</p>
+<form id="update-kennel-form-ajax">
+    <label for="input-size_limit">Size Limit (1 for small, 2 for medium, 3 for large): </label>
+    <input type="number" name="input-size_limit" id="input-size_limit">
+    
+    <label for="input-current_tenant">Current Tenant: </label>
+    <input type="number" name="input-current_tenant" id="input-current_tenant">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/update_kennel.js"></script>
