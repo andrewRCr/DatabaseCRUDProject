@@ -152,14 +152,14 @@ app.post('/add-employee-ajax', function(req, res)
     let data = req.body;
 
     // Capture NULL values
-    // let assigned_yard = parseInt(data.assigned_yard);
-    // if (isNaN(assigned_yard))
-    // {
-    //     assigned_yard = 'NULL'
-    // }
+    let assigned_yard = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        assigned_yard = 'NULL'
+    }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title) VALUES ('${data.first_name}', '${data.last_name}', ${data.phone_number}, '${data.job_title}')`;
+    query1 = `INSERT INTO Employees (first_name, last_name, phone_number, job_title, assigned_yard) VALUES ('${data.first_name}', '${data.last_name}', ${data.phone_number}, '${data.job_title}', ${assigned_yard})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -365,7 +365,7 @@ app.get('/dog_employee_relations', (req, res) =>
 });                                                         // received back from the query
 
 // define DOG_EMPLOYEE_RELATIONS entity POST route
-app.post('/add-dog_employee_relations-ajax', function(req, res) 
+app.post('/add-dog_employee_relation-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
