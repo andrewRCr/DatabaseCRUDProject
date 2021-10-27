@@ -386,6 +386,12 @@ app.post('/add-dog-ajax', function(req, res)
     })
 });
 
+// define DOGS entity UPDATE GET route
+app.get('/update_dog', (req, res) =>
+    {  
+        res.render('update_dog');              
+    }); 
+
 // define DOG_EMPLOYEES_RELATIONS entity GET route
 app.get('/dog_employee_relations', (req, res) =>
 {  
