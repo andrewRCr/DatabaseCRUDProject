@@ -1,10 +1,6 @@
 /* ./public/css/styles.css
 
 /* common styles */
-* {
-    /*padding: 0;
-    margin: 0;*/
-  }
   
   body {
     /*width: 100vw;
@@ -14,8 +10,7 @@
     font-family: sans-serif;
   }
 
-
-/* common style ends */
+/* common styles end */
 
 /* container */
 .container {
