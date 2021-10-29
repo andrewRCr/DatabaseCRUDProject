@@ -194,9 +194,13 @@ app.post('/add-employee-ajax', function(req, res)
 
 // define EMPLOYEES entity UPDATE GET route
 app.get('/update_employee', (req, res) =>
-    {  
-        res.render('update_employee');              
-    }); 
+{
+    let query1 = "SELECT * FROM Employees WHERE emp_id = '" + req.query.input-PK + "';";
+    db.pool.query(query1, function(error, result, fields){
+
+        res.render('update_employees', {data: result});
+    })
+}); 
 
 // define EMPLOYEES entity UPDATE POST route
 app.post('/update-employee-ajax', function(req, res) 
