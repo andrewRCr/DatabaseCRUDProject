@@ -76,8 +76,8 @@ UPDATE `Kennels` SET `current_tenant` = 3 WHERE `kennel_id` = 4;
 
 CREATE TABLE `Employees` (
   `emp_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
-  `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `phone_number` int(10) NOT NULL,
   `job_title` varchar(255) NOT NULL,
   `assigned_yard` int(11),
@@ -90,7 +90,12 @@ CREATE TABLE `Employees` (
 
 LOCK TABLES `Employees` WRITE;
 /*!40000 ALTER TABLE `Employees` DISABLE KEYS */;
-INSERT INTO `Employees` VALUES (1,'Howlett','James', 3333333333, 'Yard Lead', 3),(2,'Wayne','Bruce', 4444444444, 'Yard Lead', 2),(3,'Romanov','Natasha',1111111111,'Yard Lead',1),(4,'Banner','Bruce',2222222222,'Groomer', NULL),(5,'Stark','Tony',6666666666,'Reception',NULL),(6,'Parker','Peter',5555555555,'Intern',NULL);
+INSERT INTO `Employees` VALUES (1,'Howlett','James', 3333333333, 'Yard Lead', 3),
+(2,'Wayne','Bruce', 4444444444, 'Yard Lead', 2),
+(3,'Romanov','Natasha',1111111111,'Yard Lead',1),
+(4,'Banner','Bruce',2222222222,'Groomer', NULL),
+(5,'Stark','Tony',6666666666,'Reception',NULL),
+(6,'Parker','Peter',5555555555,'Intern',NULL);
 /*!40000 ALTER TABLE `Employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
