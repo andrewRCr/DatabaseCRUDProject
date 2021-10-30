@@ -195,7 +195,7 @@ app.post('/add-employee-ajax', function(req, res)
 // define EMPLOYEES entity UPDATE GET route
 app.get('/update_employee', (req, res) =>
 {
-    let query1 = `SELECT * FROM Employees WHERE emp_id = ${req.query.input-PK}`;
+    let query1 = `SELECT * FROM Employees WHERE emp_id=${req.query.input-PK}`;
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
 
@@ -203,7 +203,7 @@ app.get('/update_employee', (req, res) =>
             console.log(error);
             res.sendStatus(400);
         }
-        res.render('update_employees');
+        res.render('update_employees', {data: rows});
     })
 });
 
