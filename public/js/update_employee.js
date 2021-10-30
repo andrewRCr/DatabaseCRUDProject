@@ -10,7 +10,6 @@ updateEmployeeForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputPK = document.getElementById("input-PK");
     let inputFirstName = document.getElementById("input-first_name");
     let inputLastName = document.getElementById("input-last_name");
     let inputPhoneNumber = document.getElementById("input-phone_number");
@@ -18,7 +17,6 @@ updateEmployeeForm.addEventListener("submit", function (e) {
     let inputAssignedYard = document.getElementById("input-assigned_yard");
 
     // Get the values from the form fields
-    let employeeValue = inputPK.value;
     let firstNameValue = inputFirstName.value;
     let lastNameValue = inputLastName.value;
     let phoneNumberValue = inputPhoneNumber.value;
@@ -27,14 +25,13 @@ updateEmployeeForm.addEventListener("submit", function (e) {
 
     // Put our data we want to send in a javascript object
     let data = {
-        emp_id: employeeValue,
         first_name: firstNameValue,
         last_name: lastNameValue,
         phone_number: phoneNumberValue,
         job_title: jobTitleValue,
         assigned_yard: AssignedYardValue
     }
-
+    
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/update-employee-ajax", true);
@@ -45,13 +42,11 @@ updateEmployeeForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Clear the input fields for another transaction
-            inputPK.value = '';
             inputFirstName.value = '';
             inputLastName.value = '';
             inputPhoneNumber.value = '';
             inputJobTitle.value = '';
             inputAssignedYard.value = '';
-            window.location.href = "/employees";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
