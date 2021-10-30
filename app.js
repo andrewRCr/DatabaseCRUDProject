@@ -197,7 +197,7 @@ app.get('/update_employee', (req, res) =>
 {
     var context = req.query.input-PK;
     console.log(context);
-    let query1 = `SELECT * FROM Employees WHERE emp_id = ${context};`;
+    let query1 = `SELECT * FROM Employees WHERE emp_id = 1;`;
     console.log(query1);
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
