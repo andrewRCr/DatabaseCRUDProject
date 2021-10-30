@@ -203,7 +203,7 @@ app.get('/update_employee', (req, res) =>
             console.log(error);
             res.sendStatus(400);
         }
-        res.render('update_employees', {data: rows});
+        res.render('update_employees');
     })
 });
 
