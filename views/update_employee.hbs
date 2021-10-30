@@ -3,27 +3,29 @@
 {{!-- Form to update an Employee record --}}
 <h2>Update Employee Information</h2>
 <p>To update an Employee, please edit their information below and click 'Submit'!</p>
+{{#each data}}
 <form id="update-employee-form-ajax">
 
-    <input type="hidden" id="input-PK" name="input-PK" value={{data.emp_id}}>
+    <input type="hidden" id="input-PK" name="input-PK" value={{this.emp_id}}>
 
     <label for="input-first_name">First Name: </label>
-    <input type="text" name="input-first_name" id="input-first_name" value={{data.first_name}}>
+    <input type="text" name="input-first_name" id="input-first_name" value={{this.first_name}}>
 
     <label for="input-last_name">Last Name: </label>
-    <input type="text" name="input-last_name" id="input-last_name" value={{data.last_name}}>
+    <input type="text" name="input-last_name" id="input-last_name" value={{this.last_name}}>
 
     <label for="input-phone_number">Phone Number: </label>
-    <input type="number" name="input-phone_number" id="input-phone_number" value={{data.phone_number}}>
+    <input type="number" name="input-phone_number" id="input-phone_number" value={{this.phone_number}}>
 
     <label for="input-job_title">Job Title: </label>
-    <input type="text" name="input-job_title" id="input-job_title" value={{data.job_title}}>
+    <input type="text" name="input-job_title" id="input-job_title" value={{this.job_title}}>
 
     <label for="input-assigned_yard">Assigned Yard: </label>
-    <input type="number" name="input-assigned_yard" id="input-assigned_yard" value={{data.assigned_yard}}>
+    <input type="number" name="input-assigned_yard" id="input-assigned_yard" value={{this.assigned_yard}}>
 
     <input type="submit">
 </form>
+{{/each}}
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/update_employee.js"></script>
