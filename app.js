@@ -194,12 +194,24 @@ app.post('/add-employee-ajax', function(req, res)
 
 // define EMPLOYEES entity UPDATE GET route
 app.get('/update_employee', (req, res) =>
-    {  
-        res.render('update_employee');              
-    }); 
+{
+    var context = {};
+    var input-PK = req.query.input-PK;
+    let query1 = `SELECT * FROM Employees WHERE emp_id = ${input-PK};`;
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        console.log({data: rows});
+        res.render('update_employees', {data: rows});
+    })
+});
 
 // define EMPLOYEES entity UPDATE POST route
-app.post('/update-employee-ajax', function(req, res) 
+app.post('/update-employee-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -228,7 +240,7 @@ app.post('/update-employee-ajax', function(req, res)
 
 // define YARDS entity GET route
 app.get('/yards', (req, res) =>
-{  
+{
     let query1 = "SELECT * FROM Yards;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
@@ -238,7 +250,7 @@ app.get('/yards', (req, res) =>
 });                                                         // received back from the query
 
 // define YARDS entity POST route
-app.post('/add-yard-ajax', function(req, res) 
+app.post('/add-yard-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -262,7 +274,7 @@ app.post('/add-yard-ajax', function(req, res)
 
                 // If there was an error on the second query, send a 400
                 if (error) {
-                    
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
@@ -279,13 +291,13 @@ app.post('/add-yard-ajax', function(req, res)
 
 // define YARDS entity UPDATE GET route
 app.get('/update_yard', (req, res) =>
-    {  
-        res.render('update_yard');              
-    }); 
+    {
+        res.render('update_yard');
+    });
 
 // define KENNELS entity GET route
 app.get('/kennels', (req, res) =>
-{  
+{
     let query1 = "SELECT * FROM Kennels;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
@@ -295,7 +307,7 @@ app.get('/kennels', (req, res) =>
 });                                                         // received back from the query
 
 // define KENNELS entity POST route
-app.post('/add-kennel-ajax', function(req, res) 
+app.post('/add-kennel-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -326,7 +338,7 @@ app.post('/add-kennel-ajax', function(req, res)
 
                 // If there was an error on the second query, send a 400
                 if (error) {
-                    
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
@@ -343,13 +355,13 @@ app.post('/add-kennel-ajax', function(req, res)
 
 // define KENNELS entity UPDATE GET route
 app.get('/update_kennel', (req, res) =>
-    {  
-        res.render('update_kennel');              
-    }); 
+    {
+        res.render('update_kennel');
+    });
 
 // define DOGS entity GET route
 app.get('/dogs', (req, res) =>
-{  
+{
     let query1 = "SELECT * FROM Dogs;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
@@ -359,7 +371,7 @@ app.get('/dogs', (req, res) =>
 });                                                         // received back from the query
 
 // define DOGS entity POST route
-app.post('/add-dog-ajax', function(req, res) 
+app.post('/add-dog-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -383,7 +395,7 @@ app.post('/add-dog-ajax', function(req, res)
 
                 // If there was an error on the second query, send a 400
                 if (error) {
-                    
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
@@ -400,13 +412,13 @@ app.post('/add-dog-ajax', function(req, res)
 
 // define DOGS entity UPDATE GET route
 app.get('/update_dog', (req, res) =>
-    {  
-        res.render('update_dog');              
-    }); 
+    {
+        res.render('update_dog');
+    });
 
 // define DOG_EMPLOYEES_RELATIONS entity GET route
 app.get('/dog_employee_relations', (req, res) =>
-{  
+{
     let query1 = "SELECT * FROM Dog_Employee_Relations;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
@@ -416,7 +428,7 @@ app.get('/dog_employee_relations', (req, res) =>
 });                                                         // received back from the query
 
 // define DOG_EMPLOYEE_RELATIONS entity POST route
-app.post('/add-dog_employee_relation-ajax', function(req, res) 
+app.post('/add-dog_employee_relation-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -440,7 +452,7 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
 
                 // If there was an error on the second query, send a 400
                 if (error) {
-                    
+
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
@@ -457,10 +469,9 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
 
 // define DOG_EMPLOYEE_RELATIONS entity UPDATE GET route
 app.get('/update_dog_employee_relation', (req, res) =>
-    {  
-        res.render('update_dog_employee_relation');              
-    }); 
+    {
+        res.render('update_dog_employee_relation');
+    });
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
-
