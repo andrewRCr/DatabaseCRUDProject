@@ -32,13 +32,13 @@
             <td>{{this.job_title}}</td>
             <td>{{this.assigned_yard}}</td>
             <td>
-                <form action="http://flip1.engr.oregonstate.edu:30093/employees" method="get">
+                <form action="/employees" method="get">
                 <input type="hidden" id="emp_id" name="emp_id" value={{this.emp_id}}>
                 <input type="submit" value="Delete">
                 </form>
             </td>
             <td>
-                <form action="http://flip1.engr.oregonstate.edu:30093/update_employee" method="get">
+                <form action="/update_employee" method="get">
                 <input type="hidden" id="emp_id" name="emp_id" value={{this.emp_id}}>
                 <input type="submit" value="Update">
                 </form>
