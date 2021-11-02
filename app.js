@@ -17,8 +17,8 @@ app.set('view engine', '.hbs');
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// use the defined port on OSU server
-port = 30093;
+// use Heroku-defined port
+const port = process.env.PORT || 3000;
 
 // ROUTING
 // define default route
