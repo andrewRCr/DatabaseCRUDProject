@@ -50,9 +50,11 @@ addEmployeeForm.addEventListener("submit", function (e) {
             inputPhoneNumber.value = '';
             inputJobTitle.value = '';
             inputAssignedYard.value = '';
+
+            window.location.href = "/employees";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
-            console.log("There was an error with the input.")
+            console.log("There was an error with the input.");
         }
     }
 

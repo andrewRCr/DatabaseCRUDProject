@@ -4,8 +4,10 @@
 <h2>Update Yard Information</h2>
 <p>To update a Yard, please edit its information below and click 'Submit'!</p>
 <form id="update-yard-form-ajax">
+    <input type="hidden" name="input-yard_id" id="input-yard_id" value={{yard_info.yard_id}}>
+
     <label for="input-dog_limit">Dog Limit: </label>
-    <input type="text" name="input-dog_limit" id="input-dog_limit">
+    <input type="text" name="input-dog_limit" id="input-dog_limit" value={{yard_info.dog_limit}}>
 
     <input type="submit">
 </form>

@@ -4,14 +4,13 @@
 <h2>Update Dog and Employee Relation Information</h2>
 <p>To update a dog and employee relation, please edit their information below and click 'Submit'!</p>
 <form id="update-dog_employee_relation-form-ajax">
-    <label for="input-dog_id">Dog ID: </label>
-    <input type="number" name="input-dog_id" id="input-dog_id">
-    
-    <label for="input-emp_id">Employee ID: </label>
-    <input type="number" name="input-emp_id" id="input-emp_id">
+
+    <input type="hidden" name="input-dog_id" id="input-dog_id" value={{dog_emp_info.dog_id}}>
+
+    <input type="hidden" name="input-emp_id" id="input-emp_id" value={{dog_emp_info.emp_id}}>
 
     <label for="input-get_along">Get Along (1 for yes, 0 for no): </label>
-    <input type="number" name="input-get_along" id="input-get_along">
+    <input type="number" name="input-get_along" id="input-get_along" value={{dog_emp_info.get_along}}>
 
     <input type="submit">
 </form>

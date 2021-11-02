@@ -46,6 +46,8 @@ addDogForm.addEventListener("submit", function (e) {
             inputDogSize.value = '';
             inputAssignedYard.value = '';
             inputAssignedKennel.value = '';
+
+            window.location.href = "/dogs";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

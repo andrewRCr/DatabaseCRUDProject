@@ -10,13 +10,16 @@ updateYardForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
+    let inputYardID = document.getElementById("input-yard_id");
     let inputDogLimit = document.getElementById("input-dog_limit");
 
     // Get the values from the form fields
+    let yardIDValue = inputYardID.value;
     let dogLimitValue = inputDogLimit.value;
 
     // Put our data we want to send in a javascript object
     let data = {
+        yard_id: yardIDValue,
         dog_limit: dogLimitValue
     }
     
@@ -30,7 +33,10 @@ updateYardForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Clear the input fields for another transaction
+            inputYardID.value = '';
             inputDogLimit.value = '';
+
+            window.location.href = "/yards";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -39,5 +45,4 @@ updateYardForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
 })

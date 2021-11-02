@@ -3,21 +3,25 @@
 {{!-- Form to update an Employee record --}}
 <h2>Update Employee Information</h2>
 <p>To update an Employee, please edit their information below and click 'Submit'!</p>
+
 <form id="update-employee-form-ajax">
+
+    <input type="hidden" name="input-emp_id" id="input-emp_id" value={{emp_info.emp_id}}>
+
     <label for="input-first_name">First Name: </label>
-    <input type="text" name="input-first_name" id="input-first_name">
+    <input type="text" name="input-first_name" id="input-first_name" value={{emp_info.first_name}}>
     
     <label for="input-last_name">Last Name: </label>
-    <input type="text" name="input-last_name" id="input-last_name">
+    <input type="text" name="input-last_name" id="input-last_name" value={{emp_info.last_name}}>
 
     <label for="input-phone_number">Phone Number: </label>
-    <input type="number" name="input-phone_number" id="input-phone_number">
+    <input type="number" name="input-phone_number" id="input-phone_number" value={{emp_info.phone_number}}>
 
     <label for="input-job_title">Job Title: </label>
-    <input type="text" name="input-job_title" id="input-job_title">
+    <input type="text" name="input-job_title" id="input-job_title" value={{emp_info.job_title}}>
 
     <label for="input-assigned_yard">Assigned Yard: </label>
-    <input type="number" name="input-assigned_yard" id="input-assigned_yard">
+    <input type="number" name="input-assigned_yard" id="input-assigned_yard" value={{emp_info.assigned_yard}}>
 
     <input type="submit">
 </form>
