@@ -5,12 +5,7 @@
 
 -- dropping all tables at once to prevent FK conflicts
 DROP TABLE IF EXISTS Yards, Kennels, Dogs, Employees, Dog_Employee_Relations;
--- ALTER TABLE Kennels DROP CONSTRAINT FK_DogsKennels;
--- DROP TABLE IF EXISTS Dog_Employee_Relations;
--- DROP TABLE IF EXISTS Employees;
--- DROP TABLE IF EXISTS Dogs;
--- DROP TABLE IF EXISTS Kennels;
--- DROP TABLE IF EXISTS Yards;
+
 
 CREATE TABLE `Yards` (
   `yard_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
