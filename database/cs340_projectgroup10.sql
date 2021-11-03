@@ -4,12 +4,13 @@
 -- source ./database/cs340_projectgroup10.sql;
 
 -- dropping all tables at once to prevent FK conflicts
-ALTER TABLE Kennels DROP CONSTRAINT FK_DogsKennels;
-DROP TABLE IF EXISTS Dog_Employee_Relations;
-DROP TABLE IF EXISTS Employees;
-DROP TABLE IF EXISTS Dogs;
-DROP TABLE IF EXISTS Kennels;
-DROP TABLE IF EXISTS Yards;
+DROP TABLE IF EXISTS Yards, Kennels, Dogs, Employees, Dog_Employee_Relations;
+-- ALTER TABLE Kennels DROP CONSTRAINT FK_DogsKennels;
+-- DROP TABLE IF EXISTS Dog_Employee_Relations;
+-- DROP TABLE IF EXISTS Employees;
+-- DROP TABLE IF EXISTS Dogs;
+-- DROP TABLE IF EXISTS Kennels;
+-- DROP TABLE IF EXISTS Yards;
 
 CREATE TABLE `Yards` (
   `yard_id` int(11) NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
