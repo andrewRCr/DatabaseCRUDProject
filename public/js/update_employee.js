@@ -10,7 +10,7 @@ updateEmployeeForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputPK = document.getElementById("input-PK");
+    let inputEmpID = document.getElementById("input-emp_id");
     let inputFirstName = document.getElementById("input-first_name");
     let inputLastName = document.getElementById("input-last_name");
     let inputPhoneNumber = document.getElementById("input-phone_number");
@@ -18,7 +18,7 @@ updateEmployeeForm.addEventListener("submit", function (e) {
     let inputAssignedYard = document.getElementById("input-assigned_yard");
 
     // Get the values from the form fields
-    let employeeValue = inputPK.value;
+    let empIDValue = inputEmpID.value;
     let firstNameValue = inputFirstName.value;
     let lastNameValue = inputLastName.value;
     let phoneNumberValue = inputPhoneNumber.value;
@@ -27,7 +27,7 @@ updateEmployeeForm.addEventListener("submit", function (e) {
 
     // Put our data we want to send in a javascript object
     let data = {
-        emp_id: employeeValue,
+        emp_id: empIDValue,
         first_name: firstNameValue,
         last_name: lastNameValue,
         phone_number: phoneNumberValue,
@@ -45,7 +45,7 @@ updateEmployeeForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Clear the input fields for another transaction
-            inputPK.value = '';
+            inputEmpID.value = '';
             inputFirstName.value = '';
             inputLastName.value = '';
             inputPhoneNumber.value = '';
@@ -54,11 +54,10 @@ updateEmployeeForm.addEventListener("submit", function (e) {
             window.location.href = "/employees";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
-            console.log("There was an error with the input.")
+            console.log("There was an error with the input.");
         }
     }
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
 })

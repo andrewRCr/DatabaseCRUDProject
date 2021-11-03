@@ -42,6 +42,8 @@ addDogEmployeeRelationForm.addEventListener("submit", function (e) {
             inputDogid.value = '';
             inputEmpid.value = '';
             inputGetAlong.value = '';
+
+            window.location.href = "/dog_employee_relations";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

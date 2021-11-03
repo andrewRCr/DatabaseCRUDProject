@@ -1,10 +1,10 @@
 /* ./public/css/styles.css
 
 /* common styles */
-  
-  body {
+
+body {
     font-family: sans-serif;
-  }
+}
 
 a:link, a:visited {
     color: rgb(2, 2, 189);
@@ -15,3 +15,16 @@ a:hover {
 
 /* common styles end */
 
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: center;
+}
+th, td {
+  border: 1px solid #000;
+}
+td {
+  align-content: center;
+  text-align: center;
+}

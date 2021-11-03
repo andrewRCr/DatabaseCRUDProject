@@ -4,11 +4,14 @@
 <h2>Update Kennel Information</h2>
 <p>To update a Kennel, please edit its information below and click 'Submit'!</p>
 <form id="update-kennel-form-ajax">
+
+    <input type="hidden" name="input-kennel_id" id="input-kennel_id" value={{kennel_info.kennel_id}}>
+
     <label for="input-size_limit">Size Limit (1 for small, 2 for medium, 3 for large): </label>
-    <input type="number" name="input-size_limit" id="input-size_limit">
+    <input type="number" name="input-size_limit" id="input-size_limit" value={{kennel_info.size_limit}}>
     
     <label for="input-current_tenant">Current Tenant: </label>
-    <input type="number" name="input-current_tenant" id="input-current_tenant">
+    <input type="number" name="input-current_tenant" id="input-current_tenant" value={{kennel_info.current_tenant}}>
 
     <input type="submit">
 </form>

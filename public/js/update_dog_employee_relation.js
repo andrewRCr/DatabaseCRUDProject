@@ -1,7 +1,7 @@
 // ./public/js/update_dog_employee_relation.js
 
 // Get the objects we need to modify
-let updateDogEmployeeRelationForm = document.getElementById('add-dog_employee_relation-form-ajax');
+let updateDogEmployeeRelationForm = document.getElementById('update-dog_employee_relation-form-ajax');
 
 // Modify the objects we need
 updateDogEmployeeRelationForm.addEventListener("submit", function (e) {
@@ -28,17 +28,20 @@ updateDogEmployeeRelationForm.addEventListener("submit", function (e) {
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/update-dog_employee_relation-ajax", true);
+    xhttp.open("POST", "/update-dog-employee-relation-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
-    xhttp.onreadystatechange = () => {
+    xhttp.onreadystatechange = function()
+    {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Clear the input fields for another transaction
             inputDogid.value = '';
             inputEmpid.value = '';
             inputGetAlong.value = '';
+
+            window.location.href = "/dog_employee_relations";
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

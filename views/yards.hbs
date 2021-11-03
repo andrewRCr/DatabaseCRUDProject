@@ -27,9 +27,18 @@
         <tr>
             <td>{{this.yard_id}}</td>
             <td>{{this.dog_limit}}</td>
-            <td><button name="delete" id={{this.yard_id}}>Delete</button></td>
-            {{!--<td><button name="update" id={{this.yard_id}}>Update</button></td>--}}
-            <td><form action = "https://cs340-project-group-10.herokuapp.com/update_yard" method="get"><button type="submit">Update</button></form></td>
+            <td>
+                <form action="/yards" method="get">
+                <input type="hidden" id="yard_id" name="yard_id" value={{this.yard_id}}>
+                <input type="submit" value="Delete">
+                </form>
+            </td>
+            <td>
+                <form action="/update_yard" method="get">
+                <input type="hidden" id="yard_id" name="yard_id" value={{this.yard_id}}>
+                <input type="submit" value="Update">
+                </form>
+            </td>
         </tr>
         {{/each}}
     </tbody>

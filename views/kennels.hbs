@@ -28,9 +28,18 @@
             <td>{{this.kennel_id}}</td>
             <td>{{this.size_limit}}</td>
             <td>{{this.current_tenant}}</td>
-            <td><button name="delete" id={{this.kennel_id}}>Delete</button></td>
-            {{!--<td><button name="update" id={{this.kennel_id}}>Update</button></td>--}}
-            <td><form action = "https://cs340-project-group-10.herokuapp.com/update_kennel" method="get"><button type="submit">Update</button></form></td>
+            <td>
+                <form action="/kennels" method="get">
+                <input type="hidden" id="kennel_id" name="kennel_id" value={{this.kennel_id}}>
+                <input type="submit" value="Delete">
+                </form>
+            </td>
+            <td>
+                <form action="/update_kennel" method="get">
+                <input type="hidden" id="kennel_id" name="kennel_id" value={{this.kennel_id}}>
+                <input type="submit" value="Update">
+                </form>
+            </td>
         </tr>
         {{/each}}
     </tbody>

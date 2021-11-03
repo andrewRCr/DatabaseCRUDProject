@@ -136,8 +136,23 @@ app.post('/add-person-ajax', function(req, res)
 
 // define EMPLOYEES entity GET route
 app.get('/employees', (req, res) =>
-{  
+{
     let query1 = "SELECT * FROM Employees;";               // Define our query
+
+    if (req.query.emp_id != undefined)
+    {
+        let query2 = `DELETE FROM Employees WHERE emp_id=${req.query.emp_id}`
+        db.pool.query(query2, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+        })
+    }
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -194,13 +209,28 @@ app.post('/add-employee-ajax', function(req, res)
 
 // define EMPLOYEES entity UPDATE GET route
 app.get('/update_employee', (req, res) =>
-{
-    let query1 = "SELECT * FROM Employees WHERE emp_id = '" + req.query.input-PK + "';";
-    db.pool.query(query1, function(error, result, fields){
-
-        res.render('update_employees', {data: result});
-    })
-}); 
+    {
+        let query1 = `SELECT * FROM Employees WHERE emp_id=${req.query.emp_id}`
+        db.pool.query(query1, function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                res.render('update_employee', {
+                    emp_info:{
+                        emp_id:rows[0].emp_id,
+                        first_name:rows[0].first_name,
+                        last_name:rows[0].last_name,
+                        phone_number:rows[0].phone_number,
+                        job_title:rows[0].job_title,
+                        assigned_yard:rows[0].assigned_yard
+                    }
+                });
+            }
+        });
+    });
 
 // define EMPLOYEES entity UPDATE POST route
 app.post('/update-employee-ajax', function(req, res) 
@@ -214,9 +244,14 @@ app.post('/update-employee-ajax', function(req, res)
     {
         assigned_yard = 'NULL'
     }
+    let phone_number = parseInt(data.phone_number);
+    if (isNaN(phone_number))
+    {
+        phone_number = 'NULL'
+    }
 
     // Create the query and run it on the database
-    query1 = `UPDATE Employees SET first_name = '${data.first_name}', last_name = '${data.last_name}', phone_number = ${data.phone_number}, job_title = '${data.job_title}', assigned_yard = ${assigned_yard} WHERE emp_id = ${emp_id}`;
+    query1 = `UPDATE Employees SET first_name = '${data.first_name}', last_name = '${data.last_name}', phone_number = ${phone_number}, job_title = '${data.job_title}', assigned_yard = ${assigned_yard} WHERE emp_id = ${data.emp_id}`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -227,6 +262,7 @@ app.post('/update-employee-ajax', function(req, res)
             res.sendStatus(400);
         }
     })
+    res.sendStatus(200);
 });
 
 
@@ -234,6 +270,21 @@ app.post('/update-employee-ajax', function(req, res)
 app.get('/yards', (req, res) =>
 {  
     let query1 = "SELECT * FROM Yards;";               // Define our query
+
+    if (req.query.yard_id != undefined)
+    {
+        let query2 = `DELETE FROM Yards WHERE yard_id=${req.query.yard_id}`
+        db.pool.query(query2, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+        })
+    }
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -283,36 +334,40 @@ app.post('/add-yard-ajax', function(req, res)
 
 // define YARDS entity UPDATE GET route
 app.get('/update_yard', (req, res) =>
-    {  
-        res.render('update_yard');              
-    }); 
+    {
+        let query1 = `SELECT * FROM Yards WHERE yard_id=${req.query.yard_id}`
+        db.pool.query(query1, function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                res.render('update_yard', {
+                    yard_info:{
+                        yard_id:rows[0].yard_id,
+                        dog_limit:rows[0].dog_limit
+                    }
+                });
+            }
+        });
+    });
 
-// define KENNELS entity GET route
-app.get('/kennels', (req, res) =>
-{  
-    let query1 = "SELECT * FROM Kennels;";               // Define our query
-
-    db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-        res.render('kennels', {data: rows});                  // Render the kennels.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
-
-// define KENNELS entity POST route
-app.post('/add-kennel-ajax', function(req, res) 
+// define YARDS entity UPDATE POST route
+app.post('/update-yard-ajax', function(req, res)
 {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Capture NULL values
-    let current_tenant = parseInt(data.current_tenant);
-    if (isNaN(current_tenant))
+    let dog_limit = parseInt(data.dog_limit);
+    if (isNaN(dog_limit))
     {
-        current_tenant = 'NULL'
+        dog_limit = 'NULL';
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Kennels (size_limit, current_tenant) VALUES (${data.size_limit}, ${data.current_tenant})`;
+    query1 = `UPDATE Yards SET dog_limit = ${dog_limit} WHERE yard_id = ${data.yard_id}`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -322,39 +377,110 @@ app.post('/add-kennel-ajax', function(req, res)
             console.log(error)
             res.sendStatus(400);
         }
-        else
-        {
-            // If there was no error, perform a SELECT * on Kennels
-            query2 = `SELECT * FROM Kennels;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
-        }
     })
+    res.sendStatus(200);
 });
+
+// define KENNELS entity GET route
+app.get('/kennels', (req, res) =>
+{  
+    let query1 = "SELECT * FROM Kennels;";               // Define our query
+
+    if (req.query.kennel_id != undefined)
+    {
+        let query2 = `DELETE FROM Kennels WHERE kennel_id=${req.query.kennel_id}`
+        db.pool.query(query2, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+        })
+    }
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('kennels', {data: rows});                  // Render the kennels.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query
 
 // define KENNELS entity UPDATE GET route
 app.get('/update_kennel', (req, res) =>
-    {  
-        res.render('update_kennel');              
-    }); 
+    {
+        let query1 = `SELECT * FROM Kennels WHERE kennel_id=${req.query.kennel_id}`
+        db.pool.query(query1, function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                res.render('update_kennel', {
+                    kennel_info:{
+                        kennel_id:rows[0].kennel_id,
+                        size_limit:rows[0].size_limit,
+                        current_tenant:rows[0].current_tenant
+                    }
+                });
+            }
+        });
+    });
+
+// define KENNELS entity UPDATE POST route
+app.post('/update-kennel-ajax', function(req, res)
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let size_limit = parseInt(data.size_limit);
+    if (isNaN(size_limit))
+    {
+        size_limit = 'NULL';
+    }
+    let current_tenant = parseInt(data.current_tenant);
+    if (isNaN(current_tenant))
+    {
+        current_tenant = 'NULL';
+    }
+
+    // Create the query and run it on the database
+    query1 = `UPDATE Kennels SET size_limit = ${size_limit}, current_tenant = ${current_tenant} WHERE kennel_id = ${data.kennel_id}`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+    })
+    res.sendStatus(200);
+});
 
 // define DOGS entity GET route
 app.get('/dogs', (req, res) =>
 {  
     let query1 = "SELECT * FROM Dogs;";               // Define our query
+
+    if (req.query.dog_id != undefined)
+    {
+        let query2 = `DELETE FROM Dogs WHERE dog_id=${req.query.dog_id}`
+        db.pool.query(query2, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+        })
+    }
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -404,14 +530,85 @@ app.post('/add-dog-ajax', function(req, res)
 
 // define DOGS entity UPDATE GET route
 app.get('/update_dog', (req, res) =>
-    {  
-        res.render('update_dog');              
-    }); 
+    {
+        let query1 = `SELECT * FROM Dogs WHERE dog_id=${req.query.dog_id}`
+        db.pool.query(query1, function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                res.render('update_dog', {
+                    dog_info:{
+                        dog_id:rows[0].dog_id,
+                        dog_name:rows[0].dog_name,
+                        dog_size:rows[0].dog_size,
+                        assigned_yard:rows[0].assigned_yard,
+                        assigned_kennel:rows[0].assigned_kennel
+                    }
+                });
+            }
+        });
+    });
+
+// define DOGS entity UPDATE POST route
+app.post('/update-dog-ajax', function(req, res)
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let dog_size = parseInt(data.dog_size);
+    if (isNaN(dog_size))
+    {
+        dog_size = 'NULL';
+    }
+    let assigned_yard = parseInt(data.assigned_yard);
+    if (isNaN(assigned_yard))
+    {
+        assigned_yard = 'NULL';
+    }
+    let assigned_kennel = parseInt(data.assigned_kennel);
+    if (isNaN(assigned_kennel))
+    {
+       assigned_kennel = 'NULL';
+    }
+
+    // Create the query and run it on the database
+    query1 = `UPDATE Dogs SET dog_name = '${data.dog_name}', dog_size = ${dog_size}, assigned_yard = ${assigned_yard}, assigned_kennel = ${assigned_kennel} WHERE dog_id = ${data.dog_id}`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+    })
+    res.sendStatus(200);
+});
 
 // define DOG_EMPLOYEES_RELATIONS entity GET route
 app.get('/dog_employee_relations', (req, res) =>
 {  
     let query1 = "SELECT * FROM Dog_Employee_Relations;";               // Define our query
+
+    if (req.query.emp_id != undefined)
+    {
+        let query2 = `DELETE FROM Dog_Employee_Relations WHERE dog_id=${req.query.dog_id} AND emp_id=${req.query.emp_id}`
+        db.pool.query(query2, function(error, rows, fields){
+
+            // Check to see if there was an error
+            if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+        })
+    }
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -460,11 +657,54 @@ app.post('/add-dog_employee_relation-ajax', function(req, res)
 });
 
 // define DOG_EMPLOYEE_RELATIONS entity UPDATE GET route
-app.get('/update_dog_employee_relation', (req, res) =>
-    {  
-        res.render('update_dog_employee_relation');              
-    }); 
+app.get('/update-dog_employee_relation', (req, res) =>
+    {
+        let query1 = `SELECT * FROM Dog_Employee_Relations WHERE emp_id=${req.query.emp_id} AND dog_id=${req.query.dog_id}`
+        db.pool.query(query1, function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                res.render('update_dog_employee_relation', {
+                    dog_emp_info:{
+                        dog_id:rows[0].dog_id,
+                        emp_id:rows[0].emp_id,
+                        get_along:rows[0].get_along
+                    }
+                });
+            }
+        });
+    });
+
+// define YARDS entity UPDATE POST route
+app.post('/update-dog-employee-relation-ajax', function(req, res)
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let get_along = parseInt(data.get_along);
+    if (isNaN(get_along))
+    {
+        get_along = NULL;
+    }
+
+    // Create the query and run it on the database
+    query1 = `UPDATE Dog_Employee_Relations SET get_along = ${get_along} WHERE dog_id = ${data.dog_id} AND emp_id = ${data.emp_id}`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+    })
+    res.sendStatus(200);
+});
 
  // LISTENER
  app.listen(port, () => console.log(`App listening at http://localhost:${port}; ctrl + C to stop.`));
-

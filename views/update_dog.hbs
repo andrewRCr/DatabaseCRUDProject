@@ -4,17 +4,19 @@
 <h2>Update Dog Information</h2>
 <p>To update a Dog, please edit their information below and click 'Submit'!</p>
 <form id="update-dog-form-ajax">
+    <input type="hidden" name="input-dog_id" id="input-dog_id" value={{dog_info.dog_id}}>
+
     <label for="input-dog_name">Dog's Name: </label>
-    <input type="text" name="input-dog_name" id="input-dog_name">
+    <input type="text" name="input-dog_name" id="input-dog_name" value={{dog_info.dog_name}}>
     
     <label for="input-size">Size (1 for small, 2 for medium, or 3 for large): </label>
-    <input type="number" name="input-size" id="input-size">
+    <input type="number" name="input-dog_size" id="input-dog_size" value={{dog_info.dog_size}}>
 
     <label for="input-assigned_yard">Assigned Yard: </label>
-    <input type="number" name="input-assigned_yard" id="input-assigned_yard">
+    <input type="number" name="input-assigned_yard" id="input-assigned_yard" value={{dog_info.assigned_yard}}>
 
     <label for="input-assigned_kennel">Assigned Kennel: </label>
-    <input type="number" name="input-assigned_kennel" id="input-assigned_kennel">
+    <input type="number" name="input-assigned_kennel" id="input-assigned_kennel" value={{dog_info.assigned_kennel}}>
 
     <input type="submit">
 </form>
